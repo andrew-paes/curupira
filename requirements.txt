@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+litellm
+pymupdf
+pytest
+httpx

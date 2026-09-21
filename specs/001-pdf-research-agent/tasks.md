@@ -28,9 +28,9 @@ description: "Task list for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project directory structure per plan.md (`src/`, `src/llm/`, `src/documents/`, `src/agent/`, `src/web/static/`, `tests/unit/`, `tests/integration/`)
-- [ ] T002 Initialize Python project with dependencies in `requirements.txt` (fastapi, uvicorn, litellm, pymupdf, pytest, httpx)
-- [ ] T003 [P] Create `.gitignore` and venv setup instructions in `README.md`
+- [X] T001 Create project directory structure per plan.md (`src/`, `src/llm/`, `src/documents/`, `src/agent/`, `src/web/static/`, `tests/unit/`, `tests/integration/`)
+- [X] T002 Initialize Python project with dependencies in `requirements.txt` (fastapi, uvicorn, litellm, pymupdf, pytest, httpx)
+- [X] T003 [P] Create `.gitignore` and venv setup instructions in `README.md`
 
 ---
 
@@ -40,10 +40,10 @@ description: "Task list for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Implement configuration management in `src/config.py` (load provider, api_key, endpoint, model, directory from CLI args/env vars)
-- [ ] T005 [P] Implement LLM provider abstraction in `src/llm/provider.py` (LiteLLM wrapper; configurable provider/endpoint/model)
-- [ ] T006 [P] Implement document discovery + page-level text extraction in `src/documents/loader.py` (recursive subdirectory traversal; PyMuPDF per-page text; read-only — no write to the acervo; local directory only; flag pages with no extractable text instead of failing)
-- [ ] T007 Implement FastAPI app skeleton + startup wiring in `src/main.py` (load config, serve static files, stub `POST /ask`)
+- [X] T004 Implement configuration management in `src/config.py` (load provider, api_key, endpoint, model, directory from CLI args/env vars)
+- [X] T005 [P] Implement LLM provider abstraction in `src/llm/provider.py` (LiteLLM wrapper; configurable provider/endpoint/model)
+- [X] T006 [P] Implement document discovery + page-level text extraction in `src/documents/loader.py` (recursive subdirectory traversal; PyMuPDF per-page text; read-only — no write to the acervo; local directory only; flag pages with no extractable text instead of failing)
+- [X] T007 Implement FastAPI app skeleton + startup wiring in `src/main.py` (load config, serve static files, stub `POST /ask`)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -57,12 +57,12 @@ description: "Task list for feature implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T008 [P] [US1] Implement in-memory page index + lexical retrieval in `src/documents/index.py`
-- [ ] T009 [US1] Implement answerer in `src/agent/answerer.py` (retrieve candidate pages, prompt LLM, return results with filename/excerpt/relevance) — depends on T008
-- [ ] T010 [US1] Implement `POST /ask` endpoint in `src/main.py` per `contracts/query-api.md` — depends on T009
-- [ ] T011 [US1] Implement simple web UI in `src/web/static/index.html` (submit question, render results)
-- [ ] T021 [P] [US1] Integration test for `POST /ask` contract in `tests/integration/test_ask.py` — depends on T010
-- [ ] T022 [P] [US1] Unit test for page index + lexical retrieval in `tests/unit/test_index.py` — depends on T008
+- [X] T008 [P] [US1] Implement in-memory page index + lexical retrieval in `src/documents/index.py`
+- [X] T009 [US1] Implement answerer in `src/agent/answerer.py` (retrieve candidate pages, prompt LLM, return results with filename/excerpt/relevance) — depends on T008
+- [X] T010 [US1] Implement `POST /ask` endpoint in `src/main.py` per `contracts/query-api.md` — depends on T009
+- [X] T011 [US1] Implement simple web UI in `src/web/static/index.html` (submit question, render results)
+- [X] T021 [P] [US1] Integration test for `POST /ask` contract in `tests/integration/test_ask.py` — depends on T010
+- [X] T022 [P] [US1] Unit test for page index + lexical retrieval in `tests/unit/test_index.py` — depends on T008
 
 ---
 
@@ -74,9 +74,9 @@ description: "Task list for feature implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T012 [US2] Add config validation + startup error handling in `src/config.py` (missing/invalid directory, missing API key, unknown provider)
-- [ ] T013 [US2] Map LLM API failures to distinct user-facing messages per failure type (with raw provider detail) in `src/llm/provider.py` and `/ask` responses
-- [ ] T014 [US2] Verify provider-agnostic behavior per `quickstart.md` (two providers via configuration only, no code change)
+- [X] T012 [US2] Add config validation + startup error handling in `src/config.py` (missing/invalid directory, missing API key, unknown provider)
+- [X] T013 [US2] Map LLM API failures to distinct user-facing messages per failure type (with raw provider detail) in `src/llm/provider.py` and `/ask` responses
+- [X] T014 [US2] Verify provider-agnostic behavior per `quickstart.md` (two providers via configuration only, no code change)
 
 ---
 
@@ -88,11 +88,11 @@ description: "Task list for feature implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T015 [P] [US3] Add page tracking to results (page number when determinable) in `src/agent/answerer.py` and response model
-- [ ] T016 [P] [US3] Add facts vs interpretation separation to the response in `src/agent/answerer.py` (`facts` vs `interpretation`)
-- [ ] T017 [US3] Add no-evidence handling in `src/agent/answerer.py` (report no sufficient evidence; list partial matches with low confidence) — depends on T015, T016
-- [ ] T018 [US3] Add citation format + no-fabrication guardrails (prompt constraints) in `src/agent/answerer.py`
-- [ ] T023 [P] [US3] Unit test for no-fabrication + facts/interpretation separation in `tests/unit/test_answerer.py` — depends on T015, T016, T018
+- [X] T015 [P] [US3] Add page tracking to results (page number when determinable) in `src/agent/answerer.py` and response model
+- [X] T016 [P] [US3] Add facts vs interpretation separation to the response in `src/agent/answerer.py` (`facts` vs `interpretation`)
+- [X] T017 [US3] Add no-evidence handling in `src/agent/answerer.py` (report no sufficient evidence; list partial matches with low confidence) — depends on T015, T016
+- [X] T018 [US3] Add citation format + no-fabrication guardrails (prompt constraints) in `src/agent/answerer.py`
+- [X] T023 [P] [US3] Unit test for no-fabrication + facts/interpretation separation in `tests/unit/test_answerer.py` — depends on T015, T016, T018
 
 ---
 
@@ -100,8 +100,8 @@ description: "Task list for feature implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T019 [P] Run `quickstart.md` validation scenarios and fix issues
-- [ ] T020 [P] Update `README.md` with usage instructions (install, startup, access)
+- [X] T019 [P] Run `quickstart.md` validation scenarios and fix issues
+- [X] T020 [P] Update `README.md` with usage instructions (install, startup, access)
 
 ---
 
@@ -186,4 +186,5 @@ With multiple developers:
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
+
 
