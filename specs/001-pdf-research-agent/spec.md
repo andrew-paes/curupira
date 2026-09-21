@@ -8,6 +8,15 @@
 
 **Input**: User description: "Serviço de agente de IA para pesquisa semântica sobre um diretório local de artigos científicos em PDF (conforme context.md)."
 
+## Clarifications
+
+### Session 2026-09-20
+
+- Q: Approximately how many PDF documents should the first version be expected to handle while still returning useful, evidence-grounded results? → A: Up to ~35 PDFs.
+- Q: When the agent finds no article with sufficient evidence to answer the question, what should it do? → A: Report that no sufficient evidence was found, and optionally list partial matches separately (flagged as low-confidence).
+- Q: When the LLM API fails (unavailable, rejected key, error, rate limit, or incomplete response), what should the user see? → A: Distinct messages per failure type with actionable guidance, plus the raw provider error detail (mix of B and D).
+- Q: Should the agent also include PDFs located in subdirectories of the configured directory, or only files directly inside that directory? → A: Include subdirectories recursively (search the entire tree under the configured directory).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Perguntar em linguagem natural sobre o acervo (Priority: P1)
@@ -57,7 +66,6 @@ Para cada resultado relevante, o usuário consegue localizar e conferir a inform
 
 ### Edge Cases
 
-- O que acontece quando o agente não encontra evidência suficiente para responder?
 - Como o sistema informa incerteza quando a página da evidência não pode ser determinada?
 - Como são tratados PDFs sem texto extraível (digitalizados ou com conteúdo não selecionável)?
 - O que ocorre quando a API da LLM está indisponível, rejeita a chave, retorna erro, atinge limite de uso ou produz resposta incompleta?
@@ -75,10 +83,11 @@ Para cada resultado relevante, o usuário consegue localizar e conferir a inform
 - **FR-005**: O sistema NÃO DEVE inventar artigos, páginas, citações ou evidências; toda afirmação apresentada como fato DEVE ser sustentada pelo conteúdo dos documentos.
 - **FR-006**: O sistema DEVE permitir configurar, no momento da inicialização: provider da LLM, chave de API, endpoint e modelo.
 - **FR-007**: O sistema DEVE ser independente de fornecedor de LLM, funcionando com diferentes providers sem alteração de código.
-- **FR-008**: O sistema DEVE permitir configurar o diretório local que contém o acervo de artigos em PDF.
+- **FR-008**: O sistema DEVE permitir configurar o diretório local que contém o acervo de artigos em PDF e DEVE incluir recursivamente os PDFs localizados em subdiretórios desse diretório.
 - **FR-009**: O sistema NÃO DEVE alterar os artigos nem editar o conteúdo original do acervo.
-- **FR-010**: O sistema DEVE informar incerteza quando a evidência for insuficiente ou a página não puder ser determinada.
-- **FR-011**: O sistema DEVE tratar falhas externas da API da LLM (indisponível, chave rejeitada, erro, limite de uso, resposta incompleta) com comportamento especificado e mensagens adequadas ao usuário.
+- **FR-010**: O sistema DEVE, quando não houver evidência suficiente para responder, informar claramente que não encontrou evidência suficiente e, opcionalmente, listar separadamente artigos parcialmente relevantes sinalizados como correspondência parcial (baixa confiança).
+- **FR-011**: O sistema DEVE informar incerteza quando a página da evidência não puder ser determinada.
+- **FR-012**: O sistema DEVE tratar falhas externas da API da LLM (indisponível, chave rejeitada, erro, limite de uso, resposta incompleta) com mensagens distintas por tipo de falha, incluindo orientação sobre como proceder e o detalhe do erro retornado pelo provedor.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -107,4 +116,5 @@ Para cada resultado relevante, o usuário consegue localizar e conferir a inform
 - A interface web é simples e funcional, sem aparência de produto comercial.
 - A forma de abstrair providers, a biblioteca de PDF, embeddings, banco vetorial e framework web são decisões adiadas para o plano técnico (conforme constituição, princípio IV).
 - O acervo é restrito ao diretório autorizado informado pelo usuário; acesso a outros diretórios não é permitido.
+- O acervo esperado para a primeira versão é de até ~35 PDFs; a viabilidade de acervos muito maiores é adiada para além desta versão.
 
