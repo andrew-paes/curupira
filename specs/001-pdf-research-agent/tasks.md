@@ -8,7 +8,7 @@ description: "Task list for feature implementation"
 
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: Not explicitly requested in the specification; test tasks are omitted. Verification is performed via `quickstart.md` scenarios.
+**Tests**: Test tasks included to satisfy plan.md "Testing" (pytest + FastAPI TestClient) and constitution Principle V (verifiable against criteria).
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -42,7 +42,7 @@ description: "Task list for feature implementation"
 
 - [ ] T004 Implement configuration management in `src/config.py` (load provider, api_key, endpoint, model, directory from CLI args/env vars)
 - [ ] T005 [P] Implement LLM provider abstraction in `src/llm/provider.py` (LiteLLM wrapper; configurable provider/endpoint/model)
-- [ ] T006 [P] Implement document discovery + page-level text extraction in `src/documents/loader.py` (recursive subdirectory traversal; PyMuPDF per-page text)
+- [ ] T006 [P] Implement document discovery + page-level text extraction in `src/documents/loader.py` (recursive subdirectory traversal; PyMuPDF per-page text; read-only — no write to the acervo; local directory only; flag pages with no extractable text instead of failing)
 - [ ] T007 Implement FastAPI app skeleton + startup wiring in `src/main.py` (load config, serve static files, stub `POST /ask`)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
@@ -61,6 +61,8 @@ description: "Task list for feature implementation"
 - [ ] T009 [US1] Implement answerer in `src/agent/answerer.py` (retrieve candidate pages, prompt LLM, return results with filename/excerpt/relevance) — depends on T008
 - [ ] T010 [US1] Implement `POST /ask` endpoint in `src/main.py` per `contracts/query-api.md` — depends on T009
 - [ ] T011 [US1] Implement simple web UI in `src/web/static/index.html` (submit question, render results)
+- [ ] T021 [P] [US1] Integration test for `POST /ask` contract in `tests/integration/test_ask.py` — depends on T010
+- [ ] T022 [P] [US1] Unit test for page index + lexical retrieval in `tests/unit/test_index.py` — depends on T008
 
 ---
 
@@ -90,6 +92,7 @@ description: "Task list for feature implementation"
 - [ ] T016 [P] [US3] Add facts vs interpretation separation to the response in `src/agent/answerer.py` (`facts` vs `interpretation`)
 - [ ] T017 [US3] Add no-evidence handling in `src/agent/answerer.py` (report no sufficient evidence; list partial matches with low confidence) — depends on T015, T016
 - [ ] T018 [US3] Add citation format + no-fabrication guardrails (prompt constraints) in `src/agent/answerer.py`
+- [ ] T023 [P] [US3] Unit test for no-fabrication + facts/interpretation separation in `tests/unit/test_answerer.py` — depends on T015, T016, T018
 
 ---
 

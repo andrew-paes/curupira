@@ -30,8 +30,8 @@ em `localhost`
 
 **Project Type**: web-service (backend + interface web simples)
 
-**Performance Goals**: resposta a uma pergunta em tempo razoável para um único
-usuário (latência dominada pela LLM; sem meta rígida para v1)
+**Performance Goals**: resposta a uma pergunta em uma única rodada da LLM (sem
+múltiplas iterações); latência dominada pela LLM; sem meta rígida de tempo para v1
 
 **Constraints**: busca restrita ao diretório local; sem busca na Internet; sem
 mutação dos PDFs; provider-agnóstico; single-user

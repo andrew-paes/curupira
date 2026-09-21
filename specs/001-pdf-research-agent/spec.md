@@ -88,14 +88,19 @@ Para cada resultado relevante, o usuário consegue localizar e conferir a inform
 - **FR-010**: O sistema DEVE, quando não houver evidência suficiente para responder, informar claramente que não encontrou evidência suficiente e, opcionalmente, listar separadamente artigos parcialmente relevantes sinalizados como correspondência parcial (baixa confiança).
 - **FR-011**: O sistema DEVE informar incerteza quando a página da evidência não puder ser determinada.
 - **FR-012**: O sistema DEVE tratar falhas externas da API da LLM (indisponível, chave rejeitada, erro, limite de uso, resposta incompleta) com mensagens distintas por tipo de falha, incluindo orientação sobre como proceder e o detalhe do erro retornado pelo provedor.
+- **FR-013**: O sistema DEVE tratar PDFs sem texto extraível (páginas digitalizadas) sem falhar, sinalizando páginas sem texto e prosseguindo com o restante do acervo.
 
 ### Key Entities *(include if feature involves data)*
 
 - **Documento (artigo em PDF)**: representa um artigo do acervo; atributos relevantes incluem nome de arquivo, identificação, conteúdo e páginas.
 - **Acervo**: o conjunto de documentos no diretório local configurado; delimita o universo de conhecimento do agente.
+- **Página**: uma página de um documento, com o texto extraído; unidade de rastreamento da evidência (página).
 - **Pergunta**: texto em linguagem natural enviado pelo usuário ao agente.
 - **Resultado (evidência)**: referência a um documento e, quando possível, a uma página, acompanhada de trecho/síntese, explicação de relevância e citação; vincula a resposta da IA ao documento original.
+- **Resposta**: a resposta agregada do agente, separando fatos de interpretação e indicando incerteza.
 - **Configuração da LLM**: parâmetros de inicialização (provider, chave de API, endpoint, modelo) que definem a LLM utilizada.
+
+**Glossário**: "documento", "artigo" e "PDF" referem-se ao mesmo conceito (um arquivo do acervo); usa-se "documento" como termo canônico.
 
 ## Success Criteria *(mandatory)*
 
@@ -117,4 +122,5 @@ Para cada resultado relevante, o usuário consegue localizar e conferir a inform
 - A forma de abstrair providers, a biblioteca de PDF, embeddings, banco vetorial e framework web são decisões adiadas para o plano técnico (conforme constituição, princípio IV).
 - O acervo é restrito ao diretório autorizado informado pelo usuário; acesso a outros diretórios não é permitido.
 - O acervo esperado para a primeira versão é de até ~35 PDFs; a viabilidade de acervos muito maiores é adiada para além desta versão.
+- A identificação do artigo (`article_id`) é derivada, quando possível, dos metadados do PDF (título/autores); na ausência deles, usa-se o nome do arquivo como identificação.
 

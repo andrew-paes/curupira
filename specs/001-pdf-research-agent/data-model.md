@@ -2,6 +2,10 @@
 
 ## Entities
 
+### Acervo
+- **Descrição**: o conjunto de documentos no diretório local configurado (percorrido recursivamente).
+- **Relações**: contém zero ou mais Documento.
+
 ### Documento (artigo em PDF)
 - **Descrição**: um arquivo PDF do acervo.
 - **Atributos**:
