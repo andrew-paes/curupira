@@ -79,4 +79,42 @@ Antes de escrever código, quero conseguir responder:
 
 Isso muda bastante a forma de pensar o desenvolvimento. Em vez de implementar primeiro e descobrir depois se funcionou, eu já tenho definido o que precisa ser verificado.
 
-Cada tarefa deve ser pequena o suficiente para ser conferida contra os critérios de aceitação, e a implementação deve ser testada contra a especificação, e não apenas julgada pela impressão de
+Cada tarefa deve ser pequena o suficiente para ser conferida contra os critérios de aceitação, e a implementação deve ser testada contra a especificação, e não apenas julgada pela impressão de que “parece funcionar”.
+
+## 6. Durante a implementação, a especificação continua viva
+
+Talvez essa seja a maior mudança de mentalidade que percebi.
+
+Quando descubro durante a implementação que alguma coisa foi mal definida ou que uma decisão precisa mudar, tento não fazer simplesmente um “patch” no código.
+
+Primeiro volto para o artefato correto: solicito alteração no **contexto**, então só depois vou para **especificação, plano ou tarefas**. Depois ajusto a implementação.
+
+Isso mantém os artefatos sincronizados com o sistema real e evita que a documentação passe a contar uma história diferente daquilo que o software realmente faz.
+
+## 7. O que eu aprendi usando SDD
+
+Minha principal conclusão é que **SDD não significa escrever muita documentação antes de programar**.
+
+Significa tornar explícitas as decisões que, em um desenvolvimento assistido por IA, seriam tomadas silenciosamente pelo modelo.
+
+Cada lacuna deixada na especificação vira uma oportunidade para a IA escolher um comportamento por conta própria.
+
+Por isso, para mim, o papel do desenvolvedor muda: ele passa menos tempo apenas dizendo *“escreva este código”* e mais tempo dizendo:
+
+> **“Isto é o que o sistema deve fazer. Estas são as restrições. Estas são as decisões. Agora prove que a implementação está de acordo com isso.”**
+
+Esse é o principal motivo pelo qual considero o SDD especialmente interessante no desenvolvimento com IA. A IA ajuda a gerar planos, decompor tarefas, analisar artefatos e produzir código, mas **a direção e a validação continuam sendo responsabilidades humanas**.
+
+## 8. O que eu quero demonstrar neste trabalho
+
+Meu objetivo não é demonstrar que consigo construir um software grande usando IA.
+
+Quero demonstrar algo mais interessante: **como um problema inicialmente informal pode ser transformado, passo a passo, em intenção, especificação, planejamento, tarefas, implementação e verificação**.
+
+Por isso escolhi construir um pequeno agente de pesquisa sobre artigos científicos. O sistema é apenas o veículo para demonstrar o processo.
+
+Para mim, a pergunta mais importante do SDD é:
+
+> **“Onde está escrita a intenção do sistema quando o código começa a mudar?”**
+
+No SDD, a resposta deve estar no repositório — e não apenas na cabeça do desenvolvedor ou no histórico de uma conversa com a IA.
